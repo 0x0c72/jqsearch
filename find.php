@@ -8,13 +8,13 @@
 	or die('Could not connect to mysql server.' );
 
 	$term = strip_tags(substr($_POST['search_term'],0, 100));
-	$term = mysqli_real_escape_string($connect, $term);
+	$term = mysqli_real_escape_string($connect, trim($term));
 
 	$sql = "select name,phone
 	from directory
 	where name like '%$term%'
 	or phone like '%$term%'
-	order by name asc";
+	order by name asc";	
 
 	$result = mysqli_query($connect, $sql);
 
