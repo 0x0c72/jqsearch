@@ -23,13 +23,21 @@
 			*	Search function
 			*/
 			function ajax_search() { 
-			  $("#search_results").show(); 
-			  var search_val=$("#search_term").val(); 
-			  $.post("./find.php", {search_term : search_val}, function(data){
-			   if (data.length>0){ 
-			     $("#search_results").html(data); 
-			   } 
-			  }) 
+				if ($("#search_term").val() == '') {
+					$("#search_results").hide();
+				}
+				else {
+					$("#search_results").show(); 
+					var search_val=$("#search_term").val(); 
+					$.post("./find.php", {search_term : search_val}, function(data){
+						if (data.length>0){ 
+				    		$("#search_results").html(data); 
+						} 
+						else {
+							$("#search_results").hide();
+						}
+					}) 
+				}
 			} 
 			</script>
 	</head> 
